@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Learning Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background: #4CAF50;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 0.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        nav a:hover {
+            background-color: #4CAF50;
+        }
+
+        .container {
+            padding: 1rem 2rem;
+        }
+
+        .video-section, .quiz-section, .progress-section {
+            margin-bottom: 2rem;
+        }
+
+        .video-section iframe {
+            width: 100%;
+            max-width: 600px;
+            height: 340px;
+            border: none;
+        }
+
+        .quiz-section input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .progress-bar {
+            background-color: #e0e0df;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .progress-bar div {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Online Learning Platform</h1>
+    </header>
+
+    <nav>
+        <a href="#videos">Videos</a>
+        <a href="#quizzes">Quizzes</a>
+        <a href="#progress">Progress</a>
+    </nav>
+
+    <div class="container">
+        <!-- Video Section -->
+        <section id="videos" class="video-section">
+            <h2>Video Lessons</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/FYErehuSuuw?si=OBKUIQOKlNQ6fxxm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quizzes" class="quiz-section">
+            <h2>Quiz</h2>
+            <p>Question 1: What is the capital of France?</p>
+            <label><input type="radio" name="quiz" value="London"> London</label><br>
+            <label><input type="radio" name="quiz" value="Paris"> Paris</label><br>
+            <label><input type="radio" name="quiz" value="Rome"> Rome</label><br>
+            <button onclick="checkQuiz()">Submit</button>
+            <p id="quiz-result"></p>
+        </section>
+
+        <!-- Progress Section -->
+        <section id="progress" class="progress-section">
+            <h2>Progress Tracking</h2>
+            <p>Your course completion progress:</p>
+            <div class="progress-bar">
+                <div id="progress-bar-fill"></div>
+            </div>
+            <button onclick="updateProgress()">Complete Lesson</button>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 CODTECH. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        function checkQuiz() {
+            const answers = document.getElementsByName("quiz");
+            let selectedAnswer = "";
+            for (const answer of answers) {
+                if (answer.checked) {
+                    selectedAnswer = answer.value;
+                    break;
+                }
+            }
+            const result = document.getElementById("quiz-result");
+            if (selectedAnswer === "Paris") {
+                result.textContent = "Correct!";
+                result.style.color = "green";
+            } else {
+                result.textContent = "Incorrect. Try again!";
+                result.style.color = "red";
+            }
+        }
+
+        // Progress tracking
+        let progress = 0;
+        function updateProgress() {
+            if (progress < 100) {
+                progress += 20;
+                document.getElementById("progress-bar-fill").style.width = progress + "%";
+            }
+        }
+    </script>
+</body>
+</html>
